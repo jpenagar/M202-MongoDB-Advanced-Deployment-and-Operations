@@ -1,0 +1,345 @@
+
+First download and install Vagrant and VirtualBox.
+
+Then download this lesson's handout and extract it.
+
+Open a shell and cd to the extracted directory. Run vagrant up. Vagrant always looks for a Vagrantfile in your current directory to determine which VM image and configuration to use. It will take a while for Vagrant to download the image, but Vagrant caches VM images locally, so you will only need to wait for this download once.
+
+Once the download finishes the VM will boot up and display a standard Ubuntu desktop that has MongoDB, MongoProc, and other tools used in this course pre-installed.
+
+Also, the following has changed since the video was filmed:
+
+    The directory name is now M202Vagrant.
+    The default box is now named 'm202-ubuntu1404-2015-08'.
+    The size of the box is roughly 1.0 GB.
+    The version of ubuntu used is now 14.04.
+    The username/password is now 'm202 User'/'m202' (no quotes)
+    The version of mongodb being used is now 3.0.5.
+	
+	
+1.-	
+C:\HashiCorp\Vagrant>cd M202_Vagrant
+
+C:\HashiCorp\Vagrant\M202_Vagrant>vagrant up
+C:\HashiCorp\Vagrant\M202_Vagrant>vagrant up
+Bringing machine 'default' up with 'virtualbox' provider...
+==> default: Box 'm202-ubuntu1404-2015-10' could not be found. Attempting to fin
+d and install...
+    default: Box Provider: virtualbox
+    default: Box Version: >= 0
+==> default: Box file was not detected as metadata. Adding it directly...
+==> default: Adding box 'm202-ubuntu1404-2015-10' (v0) for provider: virtualbox
+    default: Downloading: https://s3.amazonaws.com/edu-downloads.10gen.com/m202/
+m202-ubuntu1404-2015-08.box
+    default: Progress: 100% (Rate: 658k/s, Estimated time remaining: --:--:--)
+==> default: Successfully added box 'm202-ubuntu1404-2015-10' (v0) for 'virtualb
+ox'!
+==> default: Importing base box 'm202-ubuntu1404-2015-10'...
+==> default: Matching MAC address for NAT networking...
+==> default: Setting the name of the VM: m202-ubuntu1404-2015-10
+==> default: Clearing any previously set network interfaces...
+==> default: Preparing network interfaces based on configuration...
+    default: Adapter 1: nat
+==> default: Forwarding ports...
+    default: 22 (guest) => 2222 (host) (adapter 1)
+==> default: Running 'pre-boot' VM customizations...
+==> default: Booting VM...
+==> default: Waiting for machine to boot. This may take a few minutes...
+    default: SSH address: 127.0.0.1:2222
+    default: SSH username: m202
+    default: SSH auth method: password
+    default:
+    default: Inserting generated public key within guest...
+    default: Removing insecure key from the guest if it's present...
+    default: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> default: Machine booted and ready!
+==> default: Checking for guest additions in VM...
+    default: The guest additions on this VM do not match the installed version o
+f
+    default: VirtualBox! In most cases this is fine, but in rare cases it can
+    default: prevent things such as shared folders from working properly. If you
+ see
+    default: shared folder errors, please make sure the guest additions within t
+he
+    default: virtual machine match the version of VirtualBox you have installed
+on
+    default: your host and reload your VM.
+    default:
+    default: Guest Additions Version: 4.3.16
+    default: VirtualBox Version: 5.1
+==> default: Mounting shared folders...
+    default: /vagrant => C:/HashiCorp/Vagrant/M202_Vagrant
+==> default: Running provisioner: shell...
+    default: Running: C:/Users/JOHAN~1.PEN/AppData/Local/Temp/vagrant-shell20160
+802-3512-1btvbjl.sh
+==> default: stdin: is not a tty
+
+C:\HashiCorp\Vagrant\M202_Vagrant>
+
+---
+
+/home/m202/mongoProc
+
+sh mongoproc.sh
+
+---------------------------------------------------------------
+
+memory mappeed file (mmap())
+
+LRU = Least recentrly Used
+
+---------------------------------------------------------------
+Resident memory
+-----------------------------------------------------------
+
+wired tiger until 3.0
+	-First pluggable storage engine
+	-Doc level loking
+	-compresion
+	-big performance
+	
+
+	
+> C:\Program Files\MongoDB\Server\3.0\bin>mongod --storageEngine wiredTiger
+
+ls -lah /data/db
+rm -rf /data/db*
+
+
+
+C:\>mongo
+MongoDB shell version: 3.0.12
+connecting to: test
+> shoe dbs
+2016-08-02T15:57:36.491-0400 E QUERY    SyntaxError: Unexpected identifier
+> show dbs
+local  0.000GB
+> use local
+switched to db local
+> show collections
+startup_log
+> db.startup_log.find().pretty()
+{
+        "_id" : "DTIC-087-1470167812748",
+        "hostname" : "DTIC-087",
+        "startTime" : ISODate("2016-08-02T19:56:52Z"),
+        "startTimeLocal" : "Tue Aug 02 15:56:52.748",
+        "cmdLine" : {
+                "storage" : {
+                        "engine" : "wiredTiger"
+                }
+        },
+        "pid" : NumberLong(4516),
+        "buildinfo" : {
+                "version" : "3.0.12",
+                "gitVersion" : "33934938e0e95d534cebbaff656cde916b9c3573",
+                "targetMinOS" : "Windows 7/Windows Server 2008 R2",
+                "OpenSSLVersion" : "OpenSSL 1.0.1p-fips 9 Jul 2015",
+                "sysInfo" : "windows sys.getwindowsversion(major=6, minor=1, bui
+ld=7601, platform=2, service_pack='Service Pack 1') BOOST_LIB_VERSION=1_49",
+                "versionArray" : [
+                        3,
+                        0,
+                        12,
+                        0
+                ],
+                "loaderFlags" : "",
+                "compilerFlags" : "/TP /nologo /EHsc /W3 /wd4355 /wd4800 /wd4267
+ /wd4244 /wd4290 /wd4068 /wd4351 /we4099 /we4930 /Z7 /errorReport:none /MD /O2 /
+Oy- /Gw /Gy /Zc:inline",
+                "allocator" : "tcmalloc",
+                "javascriptEngine" : "V8",
+                "bits" : 64,
+                "debug" : false,
+                "maxBsonObjectSize" : 16777216
+        }
+}
+>
+
+-------------------------------------------
+Procces restarts
+
+
+spinning disk = tienes que usar lo mas posible la data en memoria
+
+network storage = 
+
+SSD = Faster
+
+raid 10 es recomedado
+
+---------------------------------------
+system level tuning
+
+NUMA 
+
+------------------
+NFS
+
+does not play well whit your rails, do not have tje mongodb journal on your NFS Volume
+
+complicate backups
+
+avoid NFS in general
+
+------------------
+swap
+
+allocate swap
+
+---------------------
+readahead
+
+sudo blockdev --report
+
+RA = 256 = 256 * 512 byte sector
+		125kbytes
+		
+--------------
+production note
+
+-dont use huge page
+-read than, read then other
+-
+
+--------------------
+CPU Consideration
+
+-user CPU
+-SYSTEM CPU
+
+user CPU
+	-count , distinct, sort
+	-iteration are key
+	-clock speed - quite important
+	
+
+system CPU
+	-scanning large areas of memmory
+	-malloc() - hcmallo()
+	
+
+The CPU considerations mentioned in this lesson apply to MongoDB's default MMAP storage engine.
+
+-------------------------------------------------
+
+Disk capacity
+
+file default = 64mb and maximun size 2048mb
+
+journal = 3file thn had 1GB = 3GB by default
+
+example
+100GB on disck
+oplog = 5gb
+journal=3GB
+db.doc=195mb
+	8GB redondeado
+	
+----------------------------------
+Reclaming Disk Space
+
+Compact Commands
+
+Standalone instance 
+	Repair comands
+	(fsck)
+	
+-repair 
+-resync (replica sets)
+
+compact - doest not reclain space on disk
+
+----------------------------
+monitoring, Strategies
+
+smalfiles 
+
+direcorydb = true
+
+-------------------------------
+segregation of resourse
+
+-multiple host
+-
+
+----------------------------
+Changed in version 3.0.0: A replica set can have up to 50 members but only 7 voting members. 
+In previous versions, replica sets can have up to 12 members.
+
+
+replica set sizing
+
+limitst
+
+7 voting members
+12total members		max limitst
+
+-----------------------------------------------------
+replica set syncing demo
+
+mongo --nodb
+
+var rst = new ReplSetTest({name : 'testSet, nodes: 3});
+
+rst.startSet();
+
+rst.initiate();
+
+monogo --port 31000
+
+PRIMARY> rs.status
+
+-------
+
+monogo --port 31002
+
+rs.syncFrom
+
+rs.syncFrom("name of syn mongo")
+
+SECONDARY>rs.syncFrom("education.local:31001")
+
+sr.status()
+
+
+----------------------------------
+primary>
+cfg = rs.conf()
+
+cfg = setting = {}
+
+rs.reconfig(cfg)
+
+rs.conf()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
